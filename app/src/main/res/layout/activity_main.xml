@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/tv_url"
+        android:id="@+id/tv_show_url"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/show_url"
@@ -29,16 +29,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_url"
+        app:layout_constraintTop_toBottomOf="@+id/tv_show_url"
         app:layout_constraintVertical_bias="0.103" />
 
     <Button
         android:id="@+id/btn_open_url"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="24dp"
         android:text="@string/open_url"
         app:layout_constraintEnd_toEndOf="@id/btn_input_URL"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="@id/btn_input_URL"
         app:layout_constraintTop_toBottomOf="@+id/btn_input_URL" />
 

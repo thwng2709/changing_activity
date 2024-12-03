@@ -1,5 +1,6 @@
 package com.example.changingactivity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -11,15 +12,16 @@ class Activity2 : AppCompatActivity() {
 		setContentView(R.layout.activity_2)
 
 		val btnOK = findViewById<Button>(R.id.btn_ok)
-		val edtInput = findViewById<EditText>(R.id.edit_text_url)
+		val edtUrl = findViewById<EditText>(R.id.edit_text_url)
 
-		val result = edtInput.text.toString()
-
-		btnOK.setOnClickListener {
-			val intent = intent
-			intent.putExtra(KEY, result) // assign data into intent
-			setResult(RESULT_CODE, intent) // set result and assign intent into it
-			finish()
+		btnOK.setOnClickListener{
+			val result = edtUrl.text.toString()
+			intent.also {
+				it.putExtra(KEY, result)
+				setResult(RESULT_CODE, it)
+				finish()
+			}
 		}
+
 	}
 }
