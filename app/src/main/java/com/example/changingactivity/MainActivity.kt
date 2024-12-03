@@ -32,5 +32,14 @@ class MainActivity : AppCompatActivity() {
 			val intent = Intent(this@MainActivity, Activity2::class.java)
 			getResult.launch(intent)
 		}
+
+		btnOpenUrl.setOnClickListener {
+			val viewIntent = Intent()
+			viewIntent.setAction(Intent.ACTION_VIEW)
+
+			if (viewIntent.resolveActivity(packageManager) != null) {
+				startActivity(viewIntent)
+			}
+		}
 	}
 }
