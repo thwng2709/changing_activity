@@ -1,11 +1,14 @@
 package com.example.changingactivity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import java.lang.Exception
 
 const val RESULT_CODE = 112543
 const val KEY = "Key"
@@ -34,11 +37,22 @@ class MainActivity : AppCompatActivity() {
 		}
 
 		btnOpenUrl.setOnClickListener {
-			val viewIntent = Intent()
-			viewIntent.setAction(Intent.ACTION_VIEW)
+			val result = tvShowUrl.text.toString()
+			if (result.isBlank()) {
+				Toast.makeText(this, "Uri unavailable!", Toast.LENGTH_SHORT).show()
+				return@setOnClickListener
+			}
 
-			if (viewIntent.resolveActivity(packageManager) != null) {
-				startActivity(viewIntent)
+			val uri = Uri.parse(result)
+			if (uri.scheme.isNullOrEmpty() || uri.host.isNullOrEmpty()) {
+				Toast.makeText(this, "Invalid URL!", Toast.LENGTH_SHORT).show()
+			} else {
+				val intent = Intent(Intent.ACTION_VIEW, uri)
+				try {
+					startActivity(intent)
+				} catch (e: Exception) {
+					Toast.makeText(this, "Unable to open URL!", Toast.LENGTH_SHORT).show()
+				}
 			}
 		}
 	}
